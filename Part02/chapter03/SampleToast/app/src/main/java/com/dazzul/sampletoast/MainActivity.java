@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         editText2 = findViewById(R.id.editText2);
     }
 
-    // 에뮬레이터 버전 때문에 안되는 것 같다..
+    // API 30 미만에서 동작
     public void onButton1Clicked(View v) {
         try {
             Toast toastView = Toast.makeText(this, "위치가 바뀐 토스트메시지 입니다.", Toast.LENGTH_LONG);
@@ -35,5 +38,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+    }
+
+    public void onButton2Clicked(View v) {
+        LayoutInflater inflater = getLayoutInflater(); // 레이아웃 인플레이터 객체 참조
+
+        View layout = inflater.inflate(R.layout.toastborder, (ViewGroup)findViewById(R.id.toast_layout_root)); // 토스트를 위한 레이아웃 인플레이션
+
+        TextView text = layout.findViewById(R.id.text);
+
+        Toast toast = new Toast(this);
+        text.setText("모양 바꾼 토스트");
+        toast.setGravity(Gravity.CENTER, 0, -11);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+
     }
 }
