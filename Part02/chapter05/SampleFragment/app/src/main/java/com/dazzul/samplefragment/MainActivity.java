@@ -1,0 +1,29 @@
+package com.dazzul.samplefragment;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    MainFragment mainFragment;
+    MenuFragment menuFragment;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mainFragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.mainFragment); // xml에 추가했을 때
+        menuFragment = new MenuFragment(); // 소스로 추가할 때
+    }
+
+    public void onFragmentChanged(int index) {
+
+        if (index == 0) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, menuFragment).commit();
+        } else if (index == 1) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, mainFragment).commit();
+        }
+    }
+}
