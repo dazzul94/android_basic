@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- 기본테마 말고 직접 만든 테마를 사용 -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
